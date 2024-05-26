@@ -2,8 +2,8 @@
 
 const arg = require('arg');
 const chalk = require('chalk');
-const path = require('path');
-const { packageUpSync } = require('package-up');
+const getConfig = require('../src/config/config-mgr');
+const start = require('../src/commands/start');
 
 try {
     const args = arg({
@@ -15,15 +15,8 @@ try {
         console.log(chalk.bgCyanBright("Building the app"));
     }
     if (args['--start']) {
-        const pkgPath = packageUpSync();
-        const pkg = require(pkgPath);
-        if (pkg.tool) {
-            console.log("Found Configuration: ", pkg.tool);
-        } else {
-            console.log("Could not find configuration, using default.");
-        }
-        // TODO do something
-        console.log(chalk.bgCyanBright("Starting the app"));
+        const config = getConfig();
+        start(config);
     }
 } catch (e) {
     console.log(chalk.yellow(e.message));
