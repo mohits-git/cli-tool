@@ -2,6 +2,8 @@
 
 This is the basic skeleton for creating a CLI tool in nodejs.
 
+**Resource**:- [Create you own cli tool](https://citw.dev/tutorial/create-your-own-cli-tool?p=1)
+
 In this project, we use a various helpful libraries to make our life easier for making a cli tool - handling arguments, finding and loading user defined config, logging / debugging to communicate with user.
 
 ### Dependencies:-
