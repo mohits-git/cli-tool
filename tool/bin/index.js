@@ -4,6 +4,7 @@ const arg = require('arg');
 const chalk = require('chalk');
 const getConfig = require('../src/config/config-mgr');
 const start = require('../src/commands/start');
+const logger = require('../src/logger')('bin');
 
 try {
     const args = arg({
@@ -11,15 +12,17 @@ try {
         '--build': Boolean,
     });
 
+    logger.debug('Received args', args)
+
     if (args['--build']) {
-        console.log(chalk.bgCyanBright("Building the app"));
+        logger.highlight('Building the app');
     }
     if (args['--start']) {
         const config = getConfig();
         start(config);
     }
 } catch (e) {
-    console.log(chalk.yellow(e.message));
+    logger.warning(e.message);
     console.log();
     usage();
 }
